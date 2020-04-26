@@ -3,12 +3,34 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
+      <span v-if="!$auth.loading">
+        <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
+        <span v-if="$auth.isAuthenticated">
+          <router-link to="/profile">Profile</router-link> |
+          <button @click="logout">Log out</button>
+        </span>
+      </span>
     </div>
     <router-view/>
   </div>
 </template>
-
+<script>
+export default {
+  name: 'App',
+  methods: {
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
