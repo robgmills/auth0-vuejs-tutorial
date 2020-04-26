@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from "../views/Profile.vue"
 import { authGuard } from "../auth/authGuard";
+import ExternalApiView from '../views/ExternalApiView'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,12 @@ Vue.use(VueRouter)
     path: "/profile",
     name: "profile",
     component: Profile,
+    beforeEnter: authGuard
+  }, 
+  {
+    path: "/external-api",
+    name: "external-api",
+    component: ExternalApiView,
     beforeEnter: authGuard
   }
 ]

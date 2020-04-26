@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/external-api">External Api</router-link> |
       <span v-if="!$auth.loading">
         <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
         <span v-if="$auth.isAuthenticated">
